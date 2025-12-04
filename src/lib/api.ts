@@ -11,7 +11,7 @@ export type ApiError = AxiosError<{error: string}>;
  * В нашем случае mockapi использует корень, поэтому мы не добавляем '/api'.
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3000/';
 
 export const api = axios.create({
     baseURL: BASE_URL,      // куда идут все запросы по умолчанию

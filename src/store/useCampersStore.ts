@@ -1,4 +1,7 @@
 // store/useCampersStore.ts
+'use client'
+
+
 import  { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Camper } from '@/lib/clientApi';
@@ -20,7 +23,7 @@ export type Filters = {
 
 // --- данные состояния ---
 
-type State = {
+export type State = {
   campers: Camper[];     // текущие карточки, загруженные с бэка (items из ответа backend)
   page: number;          // текущая страница для пагинации (page query param)
   limit: number;         // сколько карточек грузим за один запрос (limit query param)
@@ -41,7 +44,7 @@ type State = {
   setLimit: (n: number) => void;                        
   toggleFavorite: (id: string) => void;
   clearFavorites: () => void;                 // Добавить/удалить из избранного
-  setLoading: (v: boolean) => void;           // Показать/скрыть индикатор загрузки (v: - value)
+  setLoading: (v: boolean) => void;           // очищает список (для тестов/удаления всех)(v: - value)
   setError: (msg: string | null) => void;                    
 };
 
