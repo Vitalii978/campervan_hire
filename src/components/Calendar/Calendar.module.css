@@ -1,0 +1,150 @@
+
+.calendarContainer {
+  width: 276px;
+  height: 284px;
+  padding: 12px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid var(--color-main);
+  position: relative;
+}
+
+
+.calendarPointer {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--color-main);
+  z-index: 2;
+}
+
+.calendarPointer::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: -9px;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 9px solid var(--color-main);;
+  z-index: 1;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButton:hover {
+  background-color: #F3F4F6;
+}
+
+.monthYear {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-main);
+  text-transform: capitalize;
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 12px;
+  height: 14px;
+}
+
+.weekDay {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text);
+
+}
+
+
+.divider {
+  height: 0.8px;
+  background-color: var(--color-main);
+  margin: 0 -12px 12px -12px;
+  width: 275px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 32px); 
+  row-gap: 4px; 
+  column-gap: 0,01px; 
+}
+
+.emptyCell {
+  width: 36px;
+  height: 32px;
+}
+
+.dayButton {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #101828;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  position: relative;
+}
+
+
+.dayButton.otherMonth {
+  color: #94A3B8; 
+  cursor: default;
+}
+
+.dayButton.otherMonth:hover {
+  border: none;
+  background: none;
+}
+
+
+.dayButton:hover:not(.selected):not(.otherMonth) {
+  border: 1px solid #475467;
+}
+
+
+.dayButton.today:not(.selected):not(.otherMonth) {
+  background-color: #475467;
+  color: #FFFFFF;
+}
+
+
+.dayButton.selected {
+  background-color: #475467;
+  color: #FFFFFF;
+  font-weight: 500;
+}

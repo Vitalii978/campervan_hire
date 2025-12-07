@@ -1,167 +1,173 @@
-// store/useCampersStore.ts
-'use client'
 
-
-import  { create } from 'zustand';
+import { create } from 'zustand';
+import { VehicleData, FilterOptions, VehicleType } from '@/types/types';
 import { persist } from 'zustand/middleware';
-import { Camper } from '@/lib/clientApi';
+import clientApi from '@/lib/clientApi';
 
-// ------------------- Типы -------------------
-//* Filters соответствуют элементам фильтратора на странице каталога (по макету).
-//* Имена полей совпадают с теми, которые мы будем передавать в query-параметрах к API.
+interface ApiResponse {
+  total: number;
+  items: Array<{
+    id: string;
+    name: string;
+    price: number;
+    rating: number;
+    location: string;
+    description: string;
+    form?: string;
+    transmission: string;
+    engine: string;
+    AC?: boolean;
+    bathroom?: boolean;
+    kitchen?: boolean;
+    TV?: boolean;
+    gallery?: Array<{ thumb: string; original: string }>;
+    reviews?: Array<{ reviewer_name: string; reviewer_rating: number; comment: string }>;
+  }>;
+}
 
+interface VehicleState {
+  vehicles: VehicleData[];
+  savedVehicles: string[];
+  page: number;
+  limit: number;
+  hasMore: boolean;
+  isLoading: boolean;
+  filters: FilterOptions;
+  
+  fetchVehicles: (reset?: boolean) => Promise<void>;
+  loadMore: () => Promise<void>;
+  toggleSaved: (id: string) => void;
+  setFilters: (filters: FilterOptions) => void;
+}
 
-export type Filters = {
-  location: string;      // текстовое поле (пример: "Kyiv", "Oslo")
-  transmission: string;  // тип трансмиссии (пример: "automatic", "manual" — single-select)
-  AC: boolean;           // наличие кондиционера
-  bathroom: boolean;     // наличие ванной/туалета
-  kitchen: boolean;      // наличие кухни
-  TV: boolean;           // наличие TV
-  form: string;          // форма кемпера (пример: "alcove", "panel", "integrated") — single-select
-};
-
-// --- данные состояния ---
-
-export type State = {
-  campers: Camper[];     // текущие карточки, загруженные с бэка (items из ответа backend)
-  page: number;          // текущая страница для пагинации (page query param)
-  limit: number;         // сколько карточек грузим за один запрос (limit query param)
-  total: number;          // общее количество записей (total из ответа бэка)
-  filters: Filters;       // выбранные фильтры (см. выше)
-  favorites: string[];    // id избранных камперов (сохраняется в localStorage)
-  isLoading: boolean;     // флаг загрузки
-  error: string | null;   // текст ошибки
-
-
-// --- действия (actions)(функции для управления стейтом) ---
-
-  setFilters: (f: Partial<Filters>) => void;            // Установить фильтры
-  resetCampers: () => void;                             // очистить список камперов и сбросить страницу
-  appendCampers: (items: Camper[], totalFromResponse?: number) => void; // Добавить автодомы в конец списка (для пагинации) (Load More)
-  setCampers: (items: Camper[], totalFromResponse?: number) => void;   // Заменить весь список автодомов (новый поиск)
-  setPage: (p: number) => void;                          // установить Изменить текущую страницу (p: - page)
-  setLimit: (n: number) => void;                        
-  toggleFavorite: (id: string) => void;
-  clearFavorites: () => void;                 // Добавить/удалить из избранного
-  setLoading: (v: boolean) => void;           // очищает список (для тестов/удаления всех)(v: - value)
-  setError: (msg: string | null) => void;                    
-};
-
-
-// ------------------- создание стора -------------------
-
-// * Создаём Zustand store с persist middleware.
- //* В persist мы сохраняем в localStorage только favorites (partialize).
-
- export const useCampersStore = create<State>()(
+export const useVehicleStore = create<VehicleState>()(
   persist(
     (set, get) => ({
-      // === initial state ===
-      campers: [],
-
-      // пагинация: page начинается с 1 по соглашению бэкенда
+      vehicles: [],
+      savedVehicles: [],
       page: 1,
-      limit: 12,
-
-      // total приходит от бекенда: показывает общее количество записей
-      total: 0,
-
-      // фильтры — начально пустые/false
-      filters: { 
-        location: '',
-        transmission: '',
-        AC: false,
-        bathroom: false,
-        kitchen: false,
-        TV: false,
-        form: '',
-      },
-      // избранное — пустой массив; persist сохранит изменения
-      favorites: [],
-
-      // флаги
+      limit: 4,
+      hasMore: true,
       isLoading: false,
-      error: null,
+      filters: {},
 
-      // === actions ===
-      /**
-       * Обновляем фильтры.
-       * Поведение:
-       * - объединяем старые фильтры и новые (partial update)
-       * - сбрасываем страницу на 1 (новый поиск)и очищаем текущие результаты,
-        // потому что фильтрация выполняется на бекенде и нужны свежие данные.
-       * - очищаем текущие загруженные campers (чтобы UI не показывал устаревшие данные)
-       */
-      setFilters: (f) => {
-        set({ filters: { ...get().filters, ...f }, page: 1 });
-        set({ campers: [], total: 0 });
+      fetchVehicles: async (reset = true) => {
+        const state = get();
+        if (state.isLoading) return;
+
+        set({ isLoading: true });
+
+        const currentPage = reset ? 1 : state.page + 1;
+        
+        
+        const params: Record<string, string | number | boolean> = {
+          page: currentPage,
+          limit: state.limit,
+        };
+
+        const { filters } = state;
+        
+        
+        if (filters.address && filters.address.trim() !== '') {
+          params.location = filters.address;
+        }
+        
+        
+        if (filters.type) {
+          const formMap: Record<VehicleType, string> = {
+            'van': 'panelTruck',
+            'integrated': 'fullyIntegrated', 
+            'alcove': 'alcove',
+          };
+          const formValue = formMap[filters.type];
+          if (formValue) {
+            params.form = formValue;
+          }
+        }
+        
+        
+        if (filters.gearbox) {
+          params.transmission = filters.gearbox;
+        }
+
+        
+        const equipFilters = ['AC', 'kitchen', 'TV', 'bathroom'] as const;
+        equipFilters.forEach(key => {
+          if (filters.equipment?.includes(key)) {
+            
+            params[key] = true;
+          }
+        });
+
+
+
+        try {
+          const response = await clientApi.get<ApiResponse>("/campers", { params });
+          const data = response.data;
+          
+          
+          const items = data.items || [];
+          const total = data.total || 0;
+          
+          const newVehicles: VehicleData[] = items.map(item => ({
+            vehicleId: item.id,
+            title: item.name,
+            rate: item.price,
+            rating: item.rating,
+            reviewCount: item.reviews?.length || 0,
+            address: item.location,
+            summary: item.description,
+            primaryImage: item.gallery?.[0] ? {
+              thumbnail: item.gallery[0].thumb
+            } : undefined,
+            gearbox: item.transmission,
+            fuelType: item.engine,
+            amenities: {
+              AC: item.AC || false,
+              kitchen: item.kitchen || false,
+              TV: item.TV || false,
+              bathroom: item.bathroom || false,
+            }
+          }));
+
+          set({
+            vehicles: reset ? newVehicles : [...state.vehicles, ...newVehicles],
+            page: currentPage,
+            hasMore: (state.page * state.limit) < total,
+            isLoading: false,
+          });
+
+        } catch (error) {
+          console.error('Error fetching vehicles:', error);
+          set({ isLoading: false, vehicles: [] });
+        }
       },
 
-      /**
-       * Полный сброс списка камперов (например, при ручном обновлении)
-       */
-      resetCampers: () => set({ campers: [], page: 1, total: 0 }),
+      loadMore: async () => {
+        const state = get();
+        if (state.isLoading || !state.hasMore) return;
+        await state.fetchVehicles(false);
+      },
 
-      /**
-       * Добавляем новые элементы в конец массива (используется при пагинации Load More).
-       * Опционально принимаем totalFromResponse — чтобы обновить total от бэка.
-       */
-      appendCampers: (items, totalFromResponse) =>       //totalFromResponse — это общее количество элементов (total) которое приходит от API в ответе на запрос.
-        set((state) => ({
-          campers: [...state.campers, ...items],
-          total: typeof totalFromResponse === 'number' ? totalFromResponse : state.total,
-        })),
+      toggleSaved: (id: string) => {
+        set(state => ({
+          savedVehicles: state.savedVehicles.includes(id)
+            ? state.savedVehicles.filter(item => item !== id)
+            : [...state.savedVehicles, id]
+        }));
+      },
 
-      /**
-       * Заменяем весь список (при новом поиске или первой загрузке).
-       * Опционально принимаем totalFromResponse.
-       */
-      setCampers: (items, totalFromResponse) =>
-        set({
-          campers: items,
-          total: typeof totalFromResponse === 'number' ? totalFromResponse : get().total,
-        }),
-
-      /**
-       * Устанавливаем страницу (используется для пагинации).
-       */
-      setPage: (p) => set({ page: p }),
-
-      /**
-       * Устанавливаем limit (количество элементов на страницу), если нужен UI выбор.
-       */
-      setLimit: (n) => set({ limit: n }),
-
-      /**
-       * Добавляем или убираем элемент из избранного по id.
-       * favorites хранится в localStorage (см. partialize ниже).
-       */
-      toggleFavorite: (id) =>
-        set((state) => {
-          const exists = state.favorites.includes(id);
-          return { favorites: exists ? state.favorites.filter((x) => x !== id) : [...state.favorites, id] };
-        }),
-
-      /**
-       * Полностью очистить избранное (удобно для отладки/теста).
-       */
-      clearFavorites: () => set({ favorites: [] }),
-
-      /**
-       * Устанавливаем флаг загрузки.
-       */
-      setLoading: (v) => set({ isLoading: v }),
-
-      /**
-       * Устанавливаем текст ошибки или очищаем его.
-       */
-      setError: (msg) => set({ error: msg }),
+      setFilters: (filters: FilterOptions) => {
+        set({ filters });
+        get().fetchVehicles(true);
+      },
     }),
     {
-      name: 'traveltrucks-storage', // ключ в localStorage
-      // partialize — сохраняем только favorites, как требует ТЗ
-      partialize: (state) => ({ favorites: state.favorites }),
+      name: 'vehicle-storage',
+      partialize: (state) => ({
+        savedVehicles: state.savedVehicles,
+        filters: state.filters,
+      }),
     }
   )
 );

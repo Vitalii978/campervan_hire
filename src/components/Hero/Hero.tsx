@@ -1,4 +1,3 @@
-// components/Hero/Hero.tsx
 
 import Link from "next/link";
 import css from "./Hero.module.css";

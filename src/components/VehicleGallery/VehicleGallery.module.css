@@ -1,0 +1,43 @@
+
+
+.galleryContainer {
+  width: 100%;
+}
+
+.thumbnailsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+}
+
+.thumbnailItem {
+  width: 100%;
+  height: 310px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.thumbnailPlaceholder {
+  width: 100%;
+  height: 310px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--color-input);
+}

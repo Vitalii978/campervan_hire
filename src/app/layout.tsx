@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/Header/Header";
+import Header from "@/components/Header/Header";
 import "modern-normalize/modern-normalize.css";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // CSS для уведомлений
+import 'react-toastify/dist/ReactToastify.css'; 
 
 
 export const inter = Inter({
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Campervan rentals - catalog and booking",
     images: [
       {
-        url: "https://clothica-front.vercel.app/images/hero/hero-desktop.png", // замените на реальный URL после деплоя
+        url: "https://clothica-front.vercel.app/images/hero/hero-desktop.png", 
         width: 1200,
         height: 630,
         alt: "Welcome to TravelTrucks",
@@ -45,7 +45,6 @@ export default function RootLayout({
         <main className="pageMain">
           {children}
         </main>
-        {/* Глобальный контейнер для уведомлений */}
         <ToastContainer position="top-right" />
       </body>
     </html>

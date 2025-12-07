@@ -1,0 +1,117 @@
+
+.bookingContainer {
+  padding: 44px 57px;
+  width: 641px;
+  box-sizing: border-box;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  height: 588px;
+}
+
+.bookingTitle {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-main);
+  margin-bottom: 8px;
+}
+
+.bookingSubtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-gray);
+  margin-bottom: 24px;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.formInput {
+  padding: 18px 18px;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-main);
+  background-color: var(--color-input);
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  height: 60px;
+  cursor: pointer;
+}
+
+
+.dateInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+.calendarDropdown {
+  position: absolute;
+  top: calc(100% + 10px); 
+  left: 0;
+  z-index: 1000;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #e44848;
+}
+
+.formInput::placeholder {
+  color: #667085;
+}
+
+.formInput:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.textarea {
+  resize: none;
+  min-height: 120px;
+  font-family: inherit;
+  height: 120px;
+  cursor: text;
+}
+
+
+.submitButton {
+  width: 166px; 
+  height: 56px; 
+  padding: 0;
+  background-color: #e44848;
+  color: white;
+  border: none;
+  border-radius: 200px; 
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 24px auto 0; 
+  display: block; 
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #d84343;
+}
+
+.submitButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

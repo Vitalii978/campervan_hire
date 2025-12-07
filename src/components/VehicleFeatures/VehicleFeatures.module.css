@@ -1,0 +1,104 @@
+
+.featuresContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  max-width: 631px;
+  height: 588px;
+  box-sizing: border-box;
+  padding: 44px 52px;
+  background-color: var(--color-input);
+  border-radius: 10px;
+}
+
+
+.equipmentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.equipmentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.equipmentBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background-color: var(--color-badge);
+  mix-blend-mode: multiply;
+  border-radius: 100px;
+  min-width: 110px;
+  border: none;
+}
+
+.equipmentIcon {
+  width: 20px;
+  height: 20px;
+  fill: #101828;
+}
+
+
+.equipmentIcon use[href*="icon-boom-box"] {
+  fill: none;
+  stroke: #101828;
+  stroke-width: 2.6667;
+}
+
+.equipmentLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #101828;
+  text-transform: capitalize;
+}
+
+
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detailsTitle {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-main);
+  margin: 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.detailLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-main);
+  text-transform: capitalize;
+}
+
+.detailValue {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-main);
+  text-transform: capitalize;
+}

@@ -1,82 +1,254 @@
-/* CatalogFilters.module.css — вынес стили отдельно */
-
-.root {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.filtersPanel {
   width: 360px;
-}
-
-.block {
   background: #fff;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #eef2f7;
+  padding: 0;
 }
 
-.label {
+.locationFilter {
+  margin-bottom: 40px;
+}
+
+.filterLabel {
   display: block;
-  font-size: 14px;
-  color: #394049;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
   margin-bottom: 8px;
 }
 
-.inputRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.iconSmall { width: 20px; height: 20px; fill: #6b7280; }
-
-.input {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #e6e9ee;
-}
-
-.actionsRow { display: flex; gap: 8px; margin-top: 8px; }
-
-.applyBtn {
-  background: #0b69ff;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-}
-
-.resetBtn {
-  background: #f3f4f6;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-}
-
-.blockTitle { font-weight: 600; margin-bottom: 8px; }
-
-.tilesColumn { display: flex; flex-direction: column; gap: 10px; }
-
-.tile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px;
+.inputWrapper {
+  position: relative;
   border-radius: 12px;
-  border: 1px solid #e6e9ee;
-  background: #fff;
+  padding: 18px 20px;
+  width: 360px;
+  height: 56px;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.inputWrapper:hover {
+  background: #f0f0f0;
+}
+
+.inputWrapper:focus-within {
+  background: #f0f0f0;
+}
+
+.locationIcon {
+  stroke: #667085;
+  color: #667085;
+  transition: stroke 0.3s, color 0.3s;
+}
+
+.inputWrapper:hover .locationIcon {
+  stroke: #101828;
+  color: #101828;
+}
+
+.inputWrapper:focus-within .locationIcon {
+  stroke: #101828;
+  color: #101828;
+}
+
+.locationInput:active + .locationIcon,
+.locationInput:focus + .locationIcon {
+  stroke: #101828;
+  color: #101828;
+}
+
+.locationInput {
+  background: transparent;
+  border: none;
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+  outline: none;
+  width: 100%;
+  transition: color 0.3s;
+}
+
+.locationInput::placeholder {
+  color: #667085;
+}
+
+.locationInput:hover,
+.locationInput:focus {
+  color: #101828;
+}
+
+.filtersHeader {
+  margin-bottom: 32px;
+}
+
+.filtersTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+  margin: 0;
+}
+
+
+.equipmentSection,
+.vehicleTypeSection {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin: 0 0 48px 0;
+}
+
+.sectionTitle::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #dadde1;
+  margin: 24px 0;
+}
+
+
+.equipmentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 12px;
+  margin-bottom: 32px;
+}
+
+.checkboxOption {
+  border-radius: 12px;
+  width: 112px;
+  height: 96px;
+  display: inline-block;
+}
+
+.equipmentCard {
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   cursor: pointer;
+  transition: border-color 0.3s;
+  background: #fff;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.tile:hover { border-color: #d0d7e6; }
-
-.tileActive {
-  border-color: #0b69ff;
-  box-shadow: 0 4px 10px rgba(11,105,255,0.08);
+.checkboxOption:hover .equipmentCard {
+  border-color: #e44848;
 }
 
-.tileIcon { width: 24px; height: 24px; fill: #0b1220; }
+.equipmentCard.selected {
+  border-color: #e44848;
+}
 
-.tileLabel { font-size: 14px; }
+.equipmentIcon {
+  width: 32px;
+  height: 32px;
+  fill: #101828;
+  margin-bottom: 8px;
+}
+
+.equipmentLabel {
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+
+.typeGrid {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.radioOption {
+  display: inline-block;
+}
+
+.typeCard {
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  background: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.radioOption:hover .typeCard {
+  border-color: #e44848;
+}
+
+.typeCard.selected {
+  border-color: #e44848;
+}
+
+.typeIcon {
+  width: 32px;
+  height: 32px;
+  fill: #101828;
+  margin-bottom: 8px;
+}
+
+.typeLabel {
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  font-weight: 400;
+}
+
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.applyFiltersBtn {
+  border-radius: 200px;
+  width: 166px;
+  height: 56px;
+  background-color: #e44848;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  transition: all 0.3s;
+  border: 1px solid #e44848;
+  cursor: pointer;
+  display: block;
+  margin-top: 32px;
+}
+
+.applyFiltersBtn:hover {
+  background-color: #d84343;
+  border-color: #d84343;
+}

@@ -1,160 +1,172 @@
-// components/CatalogFilters/CatalogFilters.tsx
-'use client';
 
-import { useState } from 'react';
-import { useCampersStore } from '@/store/store';
-import css from './CatalogFilters.module.css';
+"use client";
 
-/**
- * Компонент фильтров (левый столбец).
- * - использует иконки из /public/icons.svg через <use href="/icons.svg#icon-id" />
- * - при клике обновляет filters в Zustand (setFilters)
- *
- * Важно: компонент НЕ делает fetch сам — стор/список слушает filters и запускает загрузку.
- */
+import { useState } from "react";
+import { useVehicleStore } from "@/store/store";
+import { EquipmentType, VehicleType } from "@/types/types";
+import { getIconName } from "@/utils/iconMapper";
+import styles from './VehicleFilters.module.css';
+import { Map } from "lucide-react";
 
-export default function CatalogFilters() {
-  const filters = useCampersStore((s) => s.filters);
-  const setFilters = useCampersStore((s) => s.setFilters);
-  const setPage = useCampersStore((s) => s.setPage);
+export default function VehicleFilters() {
+  const { setFilters, filters } = useVehicleStore();
+  
+  const [location, setLocation] = useState(filters.address || "");
+  const [vehicleType, setVehicleType] = useState<VehicleType | "">(filters.type || "");
+  const [equipment, setEquipment] = useState<EquipmentType[]>(filters.equipment || []);
+  const [transmission, setTransmission] = useState<"automatic" | "">(
+    filters.gearbox === "automatic" ? "automatic" : ""
+  );
 
-  // Локальный state только для UI (например, поле ввода location)
-  const [locationInput, setLocationInput] = useState(filters.location ?? '');
-
-  // Тоггл булевых опций (AC, kitchen, TV, bathroom)
-  const toggleBool = (key: keyof typeof filters) => {
-    // Обновляем фильтры в сторе — по ТЗ setFilters должен сбрасывать page=1 и очищать campers
-    setFilters({ [key]: !Boolean(filters[key as keyof typeof filters]) } as Partial<typeof filters>);
-    // на всякий случай устанавливаем страницу 1 (setFilters в сторе по ТЗ должен уже это делать)
-    setPage(1);
-  };
-
-  // Выбор типа кузова (form)
-  const setForm = (value: string) => {
-    setFilters({ form: value });
-    setPage(1);
-  };
-
-  // Ввод location: применяем по кнопке Search (чтобы не гонять запросы на каждый ввод)
-  const applyLocation = () => {
-    setFilters({ location: locationInput });
-    setPage(1);
-  };
-
-  const resetAll = () => {
+  const handleApply = () => {
     setFilters({
-      location: '',
-      transmission: '',
-      form: '',
-      AC: false,
-      bathroom: false,
-      kitchen: false,
-      TV: false,
+      address: location || undefined,
+      type: vehicleType || undefined,
+      equipment: equipment.length ? equipment : undefined,
+      gearbox: transmission || undefined,
     });
-    setLocationInput('');
-    setPage(1);
   };
+
+  const toggleEquipment = (item: EquipmentType) => {
+    setEquipment(prev =>
+      prev.includes(item)
+        ? prev.filter(e => e !== item)
+        : [...prev, item]
+    );
+  };
+
+  const toggleTransmission = () => {
+    setTransmission(prev => prev ? "" : "automatic");
+  };
+
+ 
+  const equipmentOptions: EquipmentType[] = ["AC", "kitchen", "TV", "bathroom"];
+  const vehicleTypes = [
+    { label: "Van", value: "van" as VehicleType },
+    { label: "Fully Integrated", value: "integrated" as VehicleType },
+    { label: "Alcove", value: "alcove" as VehicleType },
+  ];
 
   return (
-    <div className={css.root}>
-      {/* Location */}
-      <div className={css.block}>
-        <label className={css.label}>Location</label>
-        <div className={css.inputRow}>
-          <svg className={css.iconSmall} aria-hidden>
-            <use href="/icons.svg#icon-map" />
-          </svg>
+    <div className={styles.filtersPanel}>
+
+      <div className={styles.locationFilter}>
+        <label className={styles.filterLabel}>Location</label>
+        <div className={styles.inputWrapper}>
+          <Map
+              width={20}
+              height={20}
+              className={styles.locationIcon}
+              stroke="currentColor"
+              fill="none"
+            />
           <input
-            className={css.input}
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className={styles.locationInput}
             placeholder="City"
-            value={locationInput}
-            onChange={(e) => setLocationInput(e.target.value)}
           />
         </div>
+      </div>
 
-        <div className={css.actionsRow}>
-          <button className={css.applyBtn} onClick={applyLocation}>Search</button>
-          <button className={css.resetBtn} onClick={resetAll}>Reset</button>
+      
+      <div className={styles.filtersHeader}>
+        <p className={styles.filtersTitle}>Filters</p>
+      </div>
+
+      
+      <div className={styles.equipmentSection}>
+        <h3 className={styles.sectionTitle}>Vehicle equipment</h3>
+        
+        <div className={styles.equipmentGrid}>
+          
+          <label className={styles.checkboxOption}>
+            <input
+              type="checkbox"
+              checked={equipment.includes("AC")}
+              onChange={() => toggleEquipment("AC")}
+              className={styles.hiddenInput}
+            />
+            <div className={`${styles.equipmentCard} ${equipment.includes("AC") ? styles.selected : ''}`}>
+              <svg className={styles.equipmentIcon}>
+                <use href={`/icons.svg#${getIconName("AC")}`} />
+              </svg>
+              <span className={styles.equipmentLabel}>AC</span>
+            </div>
+          </label>
+
+          
+          <label className={styles.checkboxOption}>
+            <input
+              type="checkbox"
+              checked={transmission === "automatic"}
+              onChange={toggleTransmission}
+              className={styles.hiddenInput}
+            />
+            <div className={`${styles.equipmentCard} ${transmission ? styles.selected : ''}`}>
+              <svg className={styles.equipmentIcon}>
+                <use href={`/icons.svg#${getIconName("automatic")}`} />
+              </svg>
+              <span className={styles.equipmentLabel}>Automatic</span>
+            </div>
+          </label>
+
+          
+          {equipmentOptions
+            .filter(item => item !== "AC")
+            .map(item => (
+              <label key={item} className={styles.checkboxOption}>
+                <input
+                  type="checkbox"
+                  checked={equipment.includes(item)}
+                  onChange={() => toggleEquipment(item)}
+                  className={styles.hiddenInput}
+                />
+                <div className={`${styles.equipmentCard} ${equipment.includes(item) ? styles.selected : ''}`}>
+                  <svg className={styles.equipmentIcon}>
+                    <use href={`/icons.svg#${getIconName(item)}`} />
+                  </svg>
+                  <span className={styles.equipmentLabel}>{item}</span>
+                </div>
+              </label>
+            ))}
         </div>
       </div>
 
-      {/* Equipment (иконки-тайлы в колонку) */}
-      <div className={css.block}>
-        <p className={css.blockTitle}>Vehicle equipment</p>
-
-        <div className={css.tilesColumn}>
-          {/* Transmission automatic */}
-          <button
-            type="button"
-            className={`${css.tile} ${filters.transmission === 'automatic' ? css.tileActive : ''}`}
-            onClick={() => { setFilters({ transmission: filters.transmission === 'automatic' ? '' : 'automatic' }); setPage(1); }}
-          >
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-automatic" /></svg>
-            <span className={css.tileLabel}>Automatic</span>
-          </button>
-
-          {/* AC */}
-          <button
-            type="button"
-            className={`${css.tile} ${filters.AC ? css.tileActive : ''}`}
-            onClick={() => toggleBool('AC')}
-          >
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-ac" /></svg>
-            <span className={css.tileLabel}>AC</span>
-          </button>
-
-          {/* Kitchen */}
-          <button
-            type="button"
-            className={`${css.tile} ${filters.kitchen ? css.tileActive : ''}`}
-            onClick={() => toggleBool('kitchen')}
-          >
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-kitchen" /></svg>
-            <span className={css.tileLabel}>Kitchen</span>
-          </button>
-
-          {/* TV */}
-          <button
-            type="button"
-            className={`${css.tile} ${filters.TV ? css.tileActive : ''}`}
-            onClick={() => toggleBool('TV')}
-          >
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-tv" /></svg>
-            <span className={css.tileLabel}>TV</span>
-          </button>
-
-          {/* Bathroom */}
-          <button
-            type="button"
-            className={`${css.tile} ${filters.bathroom ? css.tileActive : ''}`}
-            onClick={() => toggleBool('bathroom')}
-          >
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-bathroom" /></svg>
-            <span className={css.tileLabel}>Bathroom</span>
-          </button>
+      
+      <div className={styles.vehicleTypeSection}>
+        <h3 className={styles.sectionTitle}>Vehicle type</h3>
+        
+        <div className={styles.typeGrid}>
+          {vehicleTypes.map(option => (
+            <label key={option.value} className={styles.radioOption}>
+              <input
+                type="radio"
+                name="vehicleType"
+                checked={vehicleType === option.value}
+                onChange={() => setVehicleType(option.value)}
+                className={styles.hiddenInput}
+              />
+              <div className={`${styles.typeCard} ${vehicleType === option.value ? styles.selected : ''}`}>
+                <svg className={styles.typeIcon}>
+                  <use href={`/icons.svg#${getIconName(option.value)}`} />
+                </svg>
+                <span className={styles.typeLabel}>{option.label}</span>
+              </div>
+            </label>
+          ))}
         </div>
       </div>
 
-      {/* Vehicle type */}
-      <div className={css.block}>
-        <p className={css.blockTitle}>Vehicle type</p>
-        <div className={css.tilesColumn}>
-          <button className={`${css.tile} ${filters.form === 'panelTruck' ? css.tileActive : ''}`} onClick={() => setForm('panelTruck') }>
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-panelTruck" /></svg>
-            <span className={css.tileLabel}>Van</span>
-          </button>
-
-          <button className={`${css.tile} ${filters.form === 'fullyIntegrated' ? css.tileActive : ''}`} onClick={() => setForm('fullyIntegrated')}>
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-fullyIntegrated" /></svg>
-            <span className={css.tileLabel}>Fully Integrated</span>
-          </button>
-
-          <button className={`${css.tile} ${filters.form === 'alcove' ? css.tileActive : ''}`} onClick={() => setForm('alcove')}>
-            <svg className={css.tileIcon}><use href="/icons.svg#icon-alcove" /></svg>
-            <span className={css.tileLabel}>Alcove</span>
-          </button>
-        </div>
-      </div>
+      
+      <button
+        onClick={handleApply}
+        className={styles.applyFiltersBtn}
+        type="button"
+      >
+        Search
+      </button>
     </div>
   );
 }

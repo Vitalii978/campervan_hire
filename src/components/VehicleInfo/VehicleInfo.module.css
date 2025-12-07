@@ -1,0 +1,79 @@
+
+.vehicleName {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--color-main);
+  margin-bottom: 8px;
+  height: 32px;
+
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.starIcon {
+  width: 16px;
+  height: 16px;
+  fill: #ffc531;
+}
+
+.ratingValue {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-main);
+  text-decoration: underline;
+}
+
+.reviewsText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-main);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.locationContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.locationIcon {
+  stroke: var(--color-main);
+  color: var(--color-main);
+}
+
+.locationText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-main);
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--color-main);
+}
