@@ -7,7 +7,8 @@ import Calendar from '@/components/Calendar/Calendar';
 import styles from './BookingForm.module.css';
 
 interface BookingFormProps {
-  vehicleName: string; 
+  vehicleId: string;
+  vehicleName: string;
 }
 
 interface FormData {
@@ -17,7 +18,7 @@ interface FormData {
   comment: string;
 }
 
-export default function BookingForm({ vehicleName }: BookingFormProps) {
+export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -28,7 +29,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
 
- 
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
@@ -55,7 +56,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
     setCalendarOpen(false);
   };
 
-  
+
   const formatDate = (date: Date | null): string => {
     if (!date) return '';
     
@@ -69,7 +70,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    
+
     if (!formData.name.trim() || !formData.email.trim() || !formData.bookingDate) {
       toast.error('Please fill in all required fields');
       return;
@@ -83,15 +84,18 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
     setIsSubmitting(true);
 
     try {
-      
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      
 
-      
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      console.log('Booking submitted:', {
+        vehicleId,
+        vehicleName,
+        ...formData
+      });
+
       toast.success(`Successfully booked ${vehicleName}! We will contact you soon.`);
       
-      
+
       setFormData({
         name: '',
         email: '',
@@ -125,7 +129,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
             onChange={handleInputChange}
             className={styles.formInput}
             placeholder="Name *"
-            title="Please enter your name"
+            title="Please enter your name" 
             required
             disabled={isSubmitting}
             onInvalid={(e) => {
@@ -175,7 +179,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
               onChange={() => {}} 
               className={styles.formInput}
               placeholder="Booking date *"
-              title="Please select a booking date"
+              title="Please select a booking date" 
               onClick={() => setCalendarOpen(!calendarOpen)}
               readOnly
               required
@@ -187,8 +191,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
                 (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
-            
-            
+
             {calendarOpen && (
               <div className={styles.calendarDropdown}>
                 <Calendar
@@ -214,7 +217,7 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
           />
         </div>
 
-        
+       
         <button
           type="submit"
           className={styles.submitButton}
@@ -225,4 +228,4 @@ export default function BookingForm({ vehicleName }: BookingFormProps) {
       </form>
     </div>
   );
-}
+} 
