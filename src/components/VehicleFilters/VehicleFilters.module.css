@@ -1,0 +1,82 @@
+/* CatalogFilters.module.css — вынес стили отдельно */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 360px;
+}
+
+.block {
+  background: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #eef2f7;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #394049;
+  margin-bottom: 8px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconSmall { width: 20px; height: 20px; fill: #6b7280; }
+
+.input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e6e9ee;
+}
+
+.actionsRow { display: flex; gap: 8px; margin-top: 8px; }
+
+.applyBtn {
+  background: #0b69ff;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.resetBtn {
+  background: #f3f4f6;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.blockTitle { font-weight: 600; margin-bottom: 8px; }
+
+.tilesColumn { display: flex; flex-direction: column; gap: 10px; }
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #e6e9ee;
+  background: #fff;
+  cursor: pointer;
+}
+
+.tile:hover { border-color: #d0d7e6; }
+
+.tileActive {
+  border-color: #0b69ff;
+  box-shadow: 0 4px 10px rgba(11,105,255,0.08);
+}
+
+.tileIcon { width: 24px; height: 24px; fill: #0b1220; }
+
+.tileLabel { font-size: 14px; }
