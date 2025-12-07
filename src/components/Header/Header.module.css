@@ -1,60 +1,12 @@
-/* 
-.header {
-    background: var(--color-input);
-}
-
-.header_container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1440px;
-    padding: 24px 64px;
-    margin: 0 auto;
-}
-
-.header_logo {
-    display: flex;
-    align-items: center;
-}
-
-.header_nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.header_list {
-    list-style: none;
-    display: flex;
-    gap: 32px;
-    margin: 0;
-    padding: 0;
-}
-
-.header_Link {
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--color-text);
-    text-decoration: none;
-    line-height: 1.5;
-}
-
-.header_Link:hover {
-    color: var(--color-button-hover);
-}
-
-.header_right {
-    width: 136px;
-} */
 
 .header {
     background: var(--color-input);
-    position: fixed; /* Делаем header фиксированным */
+    position: fixed; 
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    height: 72px; /* Фиксированная высота header */
+    height: 72px; 
 }
 
 .header_container {
@@ -66,7 +18,7 @@
     margin: 0 auto;
     height: 100%;
     box-sizing: border-box;
-    width: 100%; /* Добавляем */
+    width: 100%; 
 }
 
 .header_logo {
@@ -74,13 +26,7 @@
     align-items: center;
 }
 
-/* ИСПРАВЛЕНИЕ: Убираем absolute позиционирование для навигации */
-.header_nav {
-    /* position: absolute;
-    left: 50%;
-    transform: translateX(-50%); */
-    /* Вместо этого используем flex для центрирования */
-}
+
 
 .header_list {
     list-style: none;
@@ -88,8 +34,8 @@
     gap: 32px;
     margin: 0;
     padding: 0;
-    justify-content: center; /* Центрируем навигационные ссылки */
-    flex: 1; /* Занимает все доступное пространство */
+    justify-content: center; 
+    flex: 1;
 }
 
 .header_Link {
