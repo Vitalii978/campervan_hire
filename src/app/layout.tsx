@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     description: "Campervan rentals - catalog and booking",
     images: [
       {
-        url: "https://clothica-front.vercel.app/images/hero/hero-desktop.png", 
+        url: "https://campervan-hire.vercel.app/images/Hero/Home_img.jpg", 
         width: 1200,
         height: 630,
         alt: "Welcome to TravelTrucks",
       },
     ],
-    url: "https://clothica-front.vercel.app", //Изменить на ссылку вашего сайта
+    url: "https://campervan-hire.vercel.app", 
   },
 };
 
