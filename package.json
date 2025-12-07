@@ -14,7 +14,7 @@
     "immer": "^11.0.1",
     "lucide-react": "^0.556.0",
     "modern-normalize": "^3.0.1",
-    "next": "^14.2.25",
+    "next": "^16.0.6",
     "persist": "^0.2.7",
     "qs": "^6.14.0",
     "react": "^18.3.1",
