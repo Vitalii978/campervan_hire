@@ -2,12 +2,12 @@
 .mainContainer {
   max-width: 1312px;
   margin: 0 auto;
-  padding: 48px 0;
-  
-
+  margin-top: 72px;
+  padding: 48px 0 80px 0;
 }
 
 .infoSection {
+  
   order: 1;
   margin-bottom: 28px;
 }
