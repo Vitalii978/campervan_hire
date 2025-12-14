@@ -1,5 +1,4 @@
-
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -46,28 +45,32 @@ interface VehicleDetails {
   }>;
 }
 
-export default function VehicleDetailsPage({ vehicleId }: VehicleDetailsPageProps) {
+export default function VehicleDetailsPage({
+  vehicleId,
+}: VehicleDetailsPageProps) {
   const [vehicle, setVehicle] = useState<VehicleDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'features' | 'reviews'>('features');
-  
+  const [activeTab, setActiveTab] = useState<'features' | 'reviews'>(
+    'features'
+  );
+
   useEffect(() => {
     const fetchVehicleDetails = async () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         if (!vehicleId) {
-          throw new Error("Vehicle ID is required");
+          throw new Error('Vehicle ID is required');
         }
-        
+
         const response = await axios.get(`/api/campers/${vehicleId}`);
-        
+
         if (response.status !== 200) {
           throw new Error(`Failed to fetch vehicle: ${response.status}`);
         }
-        
+
         setVehicle(response.data);
       } catch (err) {
         console.error('Error fetching vehicle details:', err);
@@ -93,8 +96,8 @@ export default function VehicleDetailsPage({ vehicleId }: VehicleDetailsPageProp
     return (
       <div className={styles.errorState}>
         <p className={styles.errorText}>{error}</p>
-        <button 
-          onClick={() => window.location.reload()} 
+        <button
+          onClick={() => window.location.reload()}
           className={styles.retryButton}
         >
           Try Again
@@ -113,22 +116,18 @@ export default function VehicleDetailsPage({ vehicleId }: VehicleDetailsPageProp
 
   return (
     <main className={styles.mainContainer}>
-      
       <section className={styles.infoSection}>
         <VehicleInfo vehicle={vehicle} />
       </section>
-      
-      
+
       <section className={styles.gallerySection}>
         <VehicleGallery images={vehicle.gallery || []} />
       </section>
-      
-      
+
       <section className={styles.descriptionSection}>
         <p className={styles.description}>{vehicle.description}</p>
       </section>
-      
-      
+
       <div className={styles.tabsHeader}>
         <div className={styles.tabsButtons}>
           <button
@@ -148,14 +147,10 @@ export default function VehicleDetailsPage({ vehicleId }: VehicleDetailsPageProp
         </div>
         <div className={styles.tabsLine}></div>
       </div>
-      
-      
+
       <div className={styles.columnsSection}>
         <div className={styles.leftColumn}>
-          
-          {activeTab === 'features' && (
-            <VehicleFeatures features={vehicle} />
-          )}
+          {activeTab === 'features' && <VehicleFeatures features={vehicle} />}
           {activeTab === 'reviews' && (
             <VehicleReviews reviews={vehicle.reviews || []} />
           )}

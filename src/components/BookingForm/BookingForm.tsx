@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useState, useRef, useEffect } from 'react';
@@ -29,7 +28,6 @@
 //   const [calendarOpen, setCalendarOpen] = useState(false);
 //   const calendarRef = useRef<HTMLDivElement>(null);
 
-
 //   useEffect(() => {
 //     const handleClickOutside = (event: MouseEvent) => {
 //       if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
@@ -56,20 +54,18 @@
 //     setCalendarOpen(false);
 //   };
 
-
 //   const formatDate = (date: Date | null): string => {
 //     if (!date) return '';
-    
+
 //     const day = date.getDate().toString().padStart(2, '0');
 //     const month = (date.getMonth() + 1).toString().padStart(2, '0');
 //     const year = date.getFullYear();
-    
+
 //     return `${day}.${month}.${year}`;
 //   };
 
 //   const handleSubmit = async (e: React.FormEvent) => {
 //     e.preventDefault();
-    
 
 //     if (!formData.name.trim() || !formData.email.trim() || !formData.bookingDate) {
 //       toast.error('Please fill in all required fields');
@@ -94,7 +90,6 @@
 //       });
 
 //       toast.success(`Successfully booked ${vehicleName}! We will contact you soon.`);
-      
 
 //       setFormData({
 //         name: '',
@@ -119,7 +114,7 @@
 //       </p>
 
 //       <form onSubmit={handleSubmit} className={styles.bookingForm}>
-        
+
 //         <div className={styles.formGroup}>
 //           <input
 //             type="text"
@@ -129,7 +124,7 @@
 //             onChange={handleInputChange}
 //             className={styles.formInput}
 //             placeholder="Name *"
-//             title="Please enter your name" 
+//             title="Please enter your name"
 //             required
 //             disabled={isSubmitting}
 //             onInvalid={(e) => {
@@ -141,7 +136,6 @@
 //           />
 //         </div>
 
-        
 //         <div className={styles.formGroup}>
 //           <input
 //             type="email"
@@ -168,7 +162,6 @@
 //           />
 //         </div>
 
-        
 //         <div className={styles.formGroup} ref={calendarRef}>
 //           <div className={styles.dateInputWrapper}>
 //             <input
@@ -176,10 +169,10 @@
 //               id="bookingDate"
 //               name="bookingDate"
 //               value={formatDate(formData.bookingDate)}
-//               onChange={() => {}} 
+//               onChange={() => {}}
 //               className={styles.formInput}
 //               placeholder="Booking date *"
-//               title="Please select a booking date" 
+//               title="Please select a booking date"
 //               onClick={() => setCalendarOpen(!calendarOpen)}
 //               readOnly
 //               required
@@ -203,7 +196,6 @@
 //           </div>
 //         </div>
 
-        
 //         <div className={styles.formGroup}>
 //           <textarea
 //             id="comment"
@@ -217,7 +209,6 @@
 //           />
 //         </div>
 
-       
 //         <button
 //           type="submit"
 //           className={styles.submitButton}
@@ -228,10 +219,9 @@
 //       </form>
 //     </div>
 //   );
-// } 
+// }
 
-
-"use client";
+'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
@@ -250,21 +240,26 @@ interface FormData {
   comment: string;
 }
 
-export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps) {
+export default function BookingForm({
+  vehicleId,
+  vehicleName,
+}: BookingFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     bookingDate: null,
-    comment: ''
+    comment: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
 
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+      if (
+        calendarRef.current &&
+        !calendarRef.current.contains(event.target as Node)
+      ) {
         setCalendarOpen(false);
       }
     };
@@ -272,40 +267,46 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     // ИСПРАВЛЕНИЕ: Тримим текстовые поля при вводе
-    const trimmedValue = ['name', 'email', 'comment'].includes(name) ? value.trim() : value;
+    const trimmedValue = ['name', 'email', 'comment'].includes(name)
+      ? value.trim()
+      : value;
     setFormData(prev => ({
       ...prev,
-      [name]: trimmedValue
+      [name]: trimmedValue,
     }));
   };
 
   const handleDateChange = (date: Date) => {
     setFormData(prev => ({
       ...prev,
-      bookingDate: date
+      bookingDate: date,
     }));
     setCalendarOpen(false);
   };
 
-
   const formatDate = (date: Date | null): string => {
     if (!date) return '';
-    
+
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
-    
+
     return `${day}.${month}.${year}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.bookingDate) {
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.bookingDate
+    ) {
       toast.error('Please fill in all required fields');
       return;
     }
@@ -319,25 +320,24 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
     setIsSubmitting(true);
 
     try {
-
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       console.log('Booking submitted:', {
         vehicleId,
         vehicleName,
-        ...formData
+        ...formData,
       });
 
-      toast.success(`Successfully booked ${vehicleName}! We will contact you soon.`);
-      
+      toast.success(
+        `Successfully booked ${vehicleName}! We will contact you soon.`
+      );
 
       setFormData({
         name: '',
         email: '',
         bookingDate: null,
-        comment: ''
+        comment: '',
       });
-
     } catch (error) {
       console.error('Booking error:', error);
       toast.error('Failed to book. Please try again.');
@@ -354,7 +354,6 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
       </p>
 
       <form onSubmit={handleSubmit} className={styles.bookingForm}>
-        
         <div className={styles.formGroup}>
           <input
             type="text"
@@ -364,19 +363,20 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
             onChange={handleInputChange}
             className={styles.formInput}
             placeholder="Name *"
-            title="Please enter your name" 
+            title="Please enter your name"
             required
             disabled={isSubmitting}
-            onInvalid={(e) => {
-              (e.target as HTMLInputElement).setCustomValidity('Please enter your name');
+            onInvalid={e => {
+              (e.target as HTMLInputElement).setCustomValidity(
+                'Please enter your name'
+              );
             }}
-            onInput={(e) => {
+            onInput={e => {
               (e.target as HTMLInputElement).setCustomValidity('');
             }}
           />
         </div>
 
-        
         <div className={styles.formGroup}>
           <input
             type="email"
@@ -389,7 +389,7 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
             title="Please enter a valid email address"
             required
             disabled={isSubmitting}
-            onInvalid={(e) => {
+            onInvalid={e => {
               const target = e.target as HTMLInputElement;
               if (target.validity.valueMissing) {
                 target.setCustomValidity('Please enter your email address');
@@ -397,13 +397,12 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
                 target.setCustomValidity('Please enter a valid email address');
               }
             }}
-            onInput={(e) => {
+            onInput={e => {
               (e.target as HTMLInputElement).setCustomValidity('');
             }}
           />
         </div>
 
-        
         <div className={styles.formGroup} ref={calendarRef}>
           <div className={styles.dateInputWrapper}>
             <input
@@ -411,18 +410,20 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
               id="bookingDate"
               name="bookingDate"
               value={formatDate(formData.bookingDate)}
-              onChange={() => {}} 
+              onChange={() => {}}
               className={styles.formInput}
               placeholder="Booking date *"
-              title="Please select a booking date" 
+              title="Please select a booking date"
               onClick={() => setCalendarOpen(!calendarOpen)}
               readOnly
               required
               disabled={isSubmitting}
-              onInvalid={(e) => {
-                (e.target as HTMLInputElement).setCustomValidity('Please select a booking date');
+              onInvalid={e => {
+                (e.target as HTMLInputElement).setCustomValidity(
+                  'Please select a booking date'
+                );
               }}
-              onInput={(e) => {
+              onInput={e => {
                 (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
@@ -438,7 +439,6 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
           </div>
         </div>
 
-        
         <div className={styles.formGroup}>
           <textarea
             id="comment"
@@ -452,7 +452,6 @@ export default function BookingForm({ vehicleId, vehicleName }: BookingFormProps
           />
         </div>
 
-       
         <button
           type="submit"
           className={styles.submitButton}

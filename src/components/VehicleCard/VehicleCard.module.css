@@ -45,7 +45,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  max-height: 32px; 
+  max-height: 32px;
 }
 
 .vehicleTitle {
@@ -54,7 +54,7 @@
   line-height: 1.33;
   max-height: 32px;
   overflow: hidden;
-  color: var(--color-main)
+  color: var(--color-main);
 }
 
 .priceSection {
@@ -97,7 +97,6 @@
   margin-bottom: 24px;
 }
 
-
 .ratingLink {
   text-decoration: none;
   color: inherit;
@@ -108,7 +107,6 @@
   align-items: center;
   gap: 1px;
 }
-
 
 .ratingLink:hover .ratingContainer {
   text-decoration: underline;
@@ -127,7 +125,6 @@
   line-height: 1.5;
 }
 
-
 .reviewsText {
   font-size: 16px;
   font-weight: 400;
@@ -135,13 +132,11 @@
   color: var(--color-main);
 }
 
-
 .locationContainer {
   display: flex;
   align-items: center;
-  gap: 4px; 
+  gap: 4px;
 }
-
 
 .locationIcon {
   stroke: #101828;

@@ -1,10 +1,9 @@
-
-import Image from "next/image";
-import Link from "next/link";
-import { VehicleData } from "@/types/types";
-import { getIconName } from "@/utils/iconMapper";
-import { useVehicleStore } from "@/store/store";
-import { Map } from "lucide-react"; 
+import Image from 'next/image';
+import Link from 'next/link';
+import { VehicleData } from '@/types/types';
+import { getIconName } from '@/utils/iconMapper';
+import { useVehicleStore } from '@/store/store';
+import { Map } from 'lucide-react';
 import styles from './VehicleCard.module.css';
 
 interface VehicleCardProps {
@@ -23,16 +22,16 @@ export default function VehicleCard({ vehicleData }: VehicleCardProps) {
     <article className={styles.vehicleCard}>
       <div className={styles.vehicleImageContainer}>
         <Image
-          src={vehicleData.primaryImage?.thumbnail || "/default-vehicle.jpg"}
+          src={vehicleData.primaryImage?.thumbnail || '/default-vehicle.jpg'}
           alt={vehicleData.title}
           width={292}
           height={320}
           className={styles.vehicleImage}
           priority={false}
-          loading="eager" 
+          loading="eager"
         />
       </div>
-      
+
       <div className={styles.vehicleDetails}>
         <div className={styles.vehicleHeader}>
           <h3 className={styles.vehicleTitle}>{vehicleData.title}</h3>
@@ -43,10 +42,14 @@ export default function VehicleCard({ vehicleData }: VehicleCardProps) {
             <button
               className={styles.saveBtn}
               onClick={() => toggleSaved(vehicleData.vehicleId)}
-              aria-label={isSaved ? "Remove from favorites" : "Add to favorites"}
+              aria-label={
+                isSaved ? 'Remove from favorites' : 'Add to favorites'
+              }
               type="button"
             >
-              <svg className={`${styles.heartIcon} ${isSaved ? styles.saved : ''}`}>
+              <svg
+                className={`${styles.heartIcon} ${isSaved ? styles.saved : ''}`}
+              >
                 <use href="/icons.svg#icon-heart" />
               </svg>
             </button>
@@ -64,7 +67,8 @@ export default function VehicleCard({ vehicleData }: VehicleCardProps) {
               </svg>
               <span className={styles.ratingValue}>{vehicleData.rating}</span>
               <span className={styles.reviewsText}>
-                ({vehicleData.reviewCount} {vehicleData.reviewCount === 1 ? "review" : "reviews"})
+                ({vehicleData.reviewCount}{' '}
+                {vehicleData.reviewCount === 1 ? 'review' : 'reviews'})
               </span>
             </div>
           </Link>
@@ -81,22 +85,12 @@ export default function VehicleCard({ vehicleData }: VehicleCardProps) {
         </div>
 
         <p className={styles.vehicleDescription}>{vehicleData.summary}</p>
-        
+
         <div className={styles.featuresContainer}>
-          <FeatureBadge 
-            icon="transmission" 
-            label={vehicleData.gearbox} 
-          />
-          <FeatureBadge 
-            icon="fuel" 
-            label={vehicleData.fuelType} 
-          />
-          {availableAmenities.map((amenity) => (
-            <FeatureBadge 
-              key={amenity}
-              icon={amenity}
-              label={amenity}
-            />
+          <FeatureBadge icon="transmission" label={vehicleData.gearbox} />
+          <FeatureBadge icon="fuel" label={vehicleData.fuelType} />
+          {availableAmenities.map(amenity => (
+            <FeatureBadge key={amenity} icon={amenity} label={amenity} />
           ))}
         </div>
 
@@ -118,7 +112,7 @@ interface FeatureBadgeProps {
 
 function FeatureBadge({ icon, label }: FeatureBadgeProps) {
   const iconPath = getIconName(icon);
-  
+
   return (
     <div className={styles.featureBadge}>
       <svg className={styles.featureIcon}>

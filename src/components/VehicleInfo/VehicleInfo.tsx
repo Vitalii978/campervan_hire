@@ -1,5 +1,4 @@
-
-import { Map } from "lucide-react";
+import { Map } from 'lucide-react';
 import styles from './VehicleInfo.module.css';
 
 interface Review {
@@ -24,9 +23,7 @@ export default function VehicleInfo({ vehicle }: VehicleInfoProps) {
 
   return (
     <div className={styles.infoContainer}>
-
       <h1 className={styles.vehicleName}>{vehicle.name}</h1>
-
 
       <div className={styles.ratingRow}>
         <div className={styles.ratingContainer}>
@@ -38,7 +35,7 @@ export default function VehicleInfo({ vehicle }: VehicleInfoProps) {
             ({reviewCount} {reviewCount === 1 ? 'Review' : 'Reviews'})
           </span>
         </div>
-        
+
         <div className={styles.locationContainer}>
           <Map
             width={16}
@@ -50,7 +47,6 @@ export default function VehicleInfo({ vehicle }: VehicleInfoProps) {
           <span className={styles.locationText}>{vehicle.location}</span>
         </div>
       </div>
-
 
       <div className={styles.priceContainer}>
         <span className={styles.price}>€{vehicle.price.toFixed(2)}</span>

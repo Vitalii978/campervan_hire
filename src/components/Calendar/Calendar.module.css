@@ -1,14 +1,12 @@
-
 .calendarContainer {
   width: 276px;
   height: 284px;
   padding: 12px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 12px;
   border: 1px solid var(--color-main);
   position: relative;
 }
-
 
 .calendarPointer {
   position: absolute;
@@ -32,7 +30,7 @@
   height: 0;
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-bottom: 9px solid var(--color-main);;
+  border-bottom: 9px solid var(--color-main);
   z-index: 1;
 }
 
@@ -53,7 +51,7 @@
 }
 
 .navButton:hover {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .monthYear {
@@ -78,9 +76,7 @@
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-text);
-
 }
-
 
 .divider {
   height: 0.8px;
@@ -92,9 +88,9 @@
 .daysGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 32px); 
-  row-gap: 4px; 
-  column-gap: 0,01px; 
+  grid-template-rows: repeat(5, 32px);
+  row-gap: 4px;
+  column-gap: 0, 01px;
 }
 
 .emptyCell {
@@ -120,9 +116,8 @@
   position: relative;
 }
 
-
 .dayButton.otherMonth {
-  color: #94A3B8; 
+  color: #94a3b8;
   cursor: default;
 }
 
@@ -131,20 +126,17 @@
   background: none;
 }
 
-
 .dayButton:hover:not(.selected):not(.otherMonth) {
   border: 1px solid #475467;
 }
 
-
 .dayButton.today:not(.selected):not(.otherMonth) {
   background-color: #475467;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-
 
 .dayButton.selected {
   background-color: #475467;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 500;
 }

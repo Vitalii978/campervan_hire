@@ -5,8 +5,7 @@ interface PageProps {
 }
 
 export default async function CatalogItemPage({ params }: PageProps) {
-
   const { id } = await params;
-  
+
   return <VehicleDetailsPage vehicleId={id} />;
 }

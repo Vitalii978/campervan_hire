@@ -1,55 +1,52 @@
-
 .header {
-    background: var(--color-input);
-    position: fixed; 
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    height: 72px; 
+  background: var(--color-input);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 72px;
 }
 
 .header_container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1440px;
-    padding: 24px 64px;
-    margin: 0 auto;
-    height: 100%;
-    box-sizing: border-box;
-    width: 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  padding: 24px 64px;
+  margin: 0 auto;
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .header_logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-
-
 .header_list {
-    list-style: none;
-    display: flex;
-    gap: 32px;
-    margin: 0;
-    padding: 0;
-    justify-content: center; 
-    flex: 1;
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  flex: 1;
 }
 
 .header_Link {
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--color-text);
-    text-decoration: none;
-    line-height: 1.5;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-text);
+  text-decoration: none;
+  line-height: 1.5;
 }
 
 .header_Link:hover {
-    color: var(--color-button-hover);
+  color: var(--color-button-hover);
 }
 
 .header_right {
-    width: 136px;
+  width: 136px;
 }

@@ -40,7 +40,9 @@
 .locationIcon {
   stroke: #667085;
   color: #667085;
-  transition: stroke 0.3s, color 0.3s;
+  transition:
+    stroke 0.3s,
+    color 0.3s;
 }
 
 .inputWrapper:hover .locationIcon {
@@ -93,7 +95,6 @@
   margin: 0;
 }
 
-
 .equipmentSection,
 .vehicleTypeSection {
   margin-bottom: 32px;
@@ -115,7 +116,6 @@
   background: #dadde1;
   margin: 24px 0;
 }
-
 
 .equipmentGrid {
   display: flex;
@@ -172,7 +172,6 @@
   font-weight: 400;
 }
 
-
 .typeGrid {
   display: flex;
   gap: 12px;
@@ -222,14 +221,12 @@
   font-weight: 400;
 }
 
-
 .hiddenInput {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 
 .applyFiltersBtn {
   border-radius: 200px;

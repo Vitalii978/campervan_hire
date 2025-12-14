@@ -1,18 +1,17 @@
 export type EquipmentType = 'AC' | 'kitchen' | 'TV' | 'bathroom';
 export type VehicleType = 'van' | 'integrated' | 'alcove';
 
-
 export function mapFormToVehicleType(form?: string): VehicleType | undefined {
   if (!form) return undefined;
-  
+
   const formMap: Record<string, VehicleType> = {
-    'alcove': 'alcove',
-    'van': 'van',
-    'panelTruck': 'van', 
-    'fullyIntegrated': 'integrated',
-    'integrated': 'integrated',
+    alcove: 'alcove',
+    van: 'van',
+    panelTruck: 'van',
+    fullyIntegrated: 'integrated',
+    integrated: 'integrated',
   };
-  
+
   return formMap[form];
 }
 
@@ -32,7 +31,7 @@ export interface VehicleData {
   amenities: {
     AC: boolean;
     kitchen: boolean;
-    
+
     TV: boolean;
     bathroom: boolean;
     [key: string]: boolean;

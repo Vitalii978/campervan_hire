@@ -1,5 +1,4 @@
-
-"use client";
+'use client';
 
 import { useState } from 'react';
 import VehicleFeatures from '@/components/VehicleFeatures/VehicleFeatures';
@@ -44,7 +43,6 @@ export default function VehicleTabs({ features, reviews }: VehicleTabsProps) {
 
   return (
     <div className={styles.tabsContainer}>
-      
       <div className={styles.tabsHeader}>
         <button
           className={`${styles.tabButton} ${activeTab === 'features' ? styles.active : ''}`}
@@ -62,14 +60,9 @@ export default function VehicleTabs({ features, reviews }: VehicleTabsProps) {
         </button>
       </div>
 
-      
       <div className={styles.tabsContent}>
-        {activeTab === 'features' && (
-          <VehicleFeatures features={features} />
-        )}
-        {activeTab === 'reviews' && (
-          <VehicleReviews reviews={reviews} />
-        )}
+        {activeTab === 'features' && <VehicleFeatures features={features} />}
+        {activeTab === 'reviews' && <VehicleReviews reviews={reviews} />}
       </div>
     </div>
   );

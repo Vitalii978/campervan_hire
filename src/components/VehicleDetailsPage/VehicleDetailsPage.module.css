@@ -1,4 +1,3 @@
-
 .mainContainer {
   max-width: 1312px;
   margin: 0 auto;
@@ -7,7 +6,6 @@
 }
 
 .infoSection {
-  
   order: 1;
   margin-bottom: 28px;
 }
@@ -29,7 +27,6 @@
   color: var(--color-text);
   margin: 0;
 }
-
 
 .tabsHeader {
   order: 4;
@@ -57,7 +54,6 @@
   transition: color 0.3s;
 }
 
-
 .tabButton.active::after {
   content: '';
   position: absolute;
@@ -73,7 +69,7 @@
 .tabsLine {
   width: 100%;
   height: 1px;
-  background-color: var(--color-gray-light) ;
+  background-color: var(--color-gray-light);
   position: relative;
   top: -1px;
 }
@@ -84,7 +80,6 @@
   gap: 40px;
   align-items: start;
 }
-
 
 .loadingState {
   display: flex;
@@ -105,8 +100,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .errorState {

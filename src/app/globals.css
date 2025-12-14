@@ -3,16 +3,15 @@
   --foreground: #171717;
   --color-main: #101828;
   --color-text: #475467;
-  --color-gray: #6C717B;
-  --color-button: #E44848;
-  --color-button-hover: #D84343;
-  --color-rating: #FFC531;
-  --color-gray-light: #DADDE1;
-  --color-badge: #F2F4F7;
-  --color-input: #F7F7F7;
-  --color-white: #FFFFFF;
+  --color-gray: #6c717b;
+  --color-button: #e44848;
+  --color-button-hover: #d84343;
+  --color-rating: #ffc531;
+  --color-gray-light: #dadde1;
+  --color-badge: #f2f4f7;
+  --color-input: #f7f7f7;
+  --color-white: #ffffff;
 }
-
 
 html,
 body {
@@ -23,9 +22,9 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter), sans-serif; 
+  font-family: var(--font-inter), sans-serif;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .pageMain {
@@ -38,9 +37,7 @@ body {
   margin: 0;
 }
 
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
