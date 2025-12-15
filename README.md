@@ -12,48 +12,49 @@ information about each vehicle.
 
 ### **Home Page** (`/`)
 
-- Welcome screen with a banner and main navigation button "View Now" leading to
+* Welcome screen with a banner and main navigation button "View Now" leading to
   the catalog.
 
 ### **Catalog Page** (`/catalog`)
 
-- Grid of cards with available campers for rent.
-- Filtering system with server-side request processing:
-  - Search by location (text field)
-  - Selection of vehicle category
-  - Filtering by optional equipment
-- Each card contains brief information and a "Show More" button to navigate to
+* Grid of cards with available campers for rent.
+* Filtering system with server-side request processing:
+
+  * Search by location (text field)
+  * Selection of vehicle category
+  * Filtering by optional equipment
+* Each card contains brief information and a "Show More" button to navigate to
   detailed view.
-- "Load More" button implements pagination with chunked data loading.
-- Ability to add campers to favorites.
+* "Load More" button implements pagination with chunked data loading.
+* Ability to add campers to favorites.
 
 ### **Camper Details Page** (`/catalog/:id`)
 
-- Complete description of the selected vehicle.
-- Slider with interior and exterior photos.
-- Switchable tabs with technical specifications and user reviews.
-- List of available features: transmission type, engine, kitchen, bathroom,
+* Complete description of the selected vehicle.
+* Slider with interior and exterior photos.
+* Switchable tabs with technical specifications and user reviews.
+* List of available features: transmission type, engine, kitchen, bathroom,
   multimedia, and other amenities.
-- Geometric parameters and consumption characteristics.
-- Contact form for booking with submission confirmation.
+* Geometric parameters and consumption characteristics.
+* Contact form for booking with submission confirmation.
 
 ## Technology Stack
 
-- **Next.js 16** — React framework with App Router
-- **TypeScript** — static typing
-- **Zustand** — application state management
-- **Axios** — HTTP client for API requests
-- **CSS Modules** — modular styling approach
+* **Next.js 16** — React framework with App Router
+* **TypeScript** — static typing
+* **Zustand** — application state management
+* **Axios** — HTTP client for API requests
+* **CSS Modules** — modular styling approach
 
 ## External API
 
 The application uses the MockAPI service with two main endpoints:
 
-- `GET /campers` — retrieve a list of campers with filtering and pagination
+* `GET /campers` — retrieve a list of campers with filtering and pagination
   support.
-- `GET /campers/:id` — detailed information about a specific camper by ID.
+* `GET /campers/:id` — detailed information about a specific camper by ID.
 
-API Address: https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers
+API Address: [https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers](https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers)
 
 ## Getting Started
 
@@ -68,3 +69,12 @@ npm install
 # Run in development mode
 npm run dev
 ```
+
+## Author
+
+**Vitalii Klymenko**
+
+## License
+
+This project is licensed under the **MIT License**.
+
