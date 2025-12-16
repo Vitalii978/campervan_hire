@@ -241,7 +241,7 @@ interface FormData {
 }
 
 export default function BookingForm({
-  vehicleId,
+  // vehicleId,
   vehicleName,
 }: BookingFormProps) {
   const [formData, setFormData] = useState<FormData>({
@@ -322,11 +322,11 @@ export default function BookingForm({
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      console.log('Booking submitted:', {
-        vehicleId,
-        vehicleName,
-        ...formData,
-      });
+      // console.log('Booking submitted:', {
+      //   vehicleId,
+      //   vehicleName,
+      //   ...formData,
+      // });
 
       toast.success(
         `Successfully booked ${vehicleName}! We will contact you soon.`
