@@ -1,4 +1,4 @@
-.featuresContainer {
+/* .featuresContainer {
   display: flex;
   flex-direction: column;
   gap: 100px;
@@ -74,6 +74,136 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-main);
+  text-transform: capitalize;
+}
+
+.detailValue {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-main);
+  text-transform: capitalize;
+} */
+
+
+
+.featuresContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Распределяем пространство */
+  max-width: 631px;
+  height: 588px;
+  box-sizing: border-box;
+  padding: 44px 52px;
+  background-color: var(--color-input);
+  border-radius: 10px;
+}
+
+.equipmentSection {
+  flex: 1; /* Занимает доступное пространство */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Исправлено: для ul списка */
+.equipmentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.equipmentBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background-color: var(--color-badge);
+  mix-blend-mode: multiply;
+  border-radius: 100px;
+  min-width: 110px;
+  border: none;
+}
+
+/* Исправлено: убрал fill, использую stroke для обводки */
+.equipmentIcon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #101828;
+  stroke-width: 2;
+}
+
+/* Иконки которые должны быть залитыми */
+.equipmentIcon use[href*='icon-AC'],
+.equipmentIcon use[href*='icon-TV'],
+.equipmentIcon use[href*='icon-kitchen'],
+.equipmentIcon use[href*='icon-bathroom'],
+.equipmentIcon use[href*='icon-refrigerator'] {
+  fill: #101828;
+  stroke: none;
+}
+
+.equipmentIcon use[href*='icon-boom-box'],
+.equipmentIcon use[href*='icon-automatic'],
+.equipmentIcon use[href*='icon-fuel'],
+.equipmentIcon use[href*='icon-microwave'],
+.equipmentIcon use[href*='icon-gas'],
+.equipmentIcon use[href*='icon-water'] {
+  fill: none;
+  stroke: #101828;
+  stroke-width: 2;
+}
+
+.equipmentLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #101828;
+  text-transform: capitalize;
+}
+
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: auto; /* Прижимает к низу */
+}
+
+.detailsTitle {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-main);
+  margin: 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+}
+
+/* Исправлено: для ul списка */
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .detailRow {
