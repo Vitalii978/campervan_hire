@@ -38,6 +38,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Meta-тег для отключения предзагрузки CSS */}
+        <meta name="next-preload" content="false" />
+        {/* Дополнительные мета-теги для предотвращения предзагрузки */}
+        <meta httpEquiv="x-dns-prefetch-control" content="off" />
+        <link rel="preconnect" href="https://campervan-hire.vercel.app" /> 
+      </head>     
       <body className={`${inter.variable} `}>
         <Header />
         <main className="pageMain">{children}</main>

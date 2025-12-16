@@ -203,12 +203,19 @@ export default function VehicleFilters() {
   );
 
   const handleApply = () => {
+    // Применяем фильтры
     setFilters({
       address: location.trim() || undefined,
       type: vehicleType || undefined,
       equipment: equipment.length ? equipment : undefined,
       gearbox: transmission || undefined,
     });
+
+    // Сбрасываем локальные состояния формы
+    setLocation('');
+    setVehicleType('');
+    setEquipment([]);
+    setTransmission('');
   };
 
   const toggleEquipment = (item: EquipmentType) => {
@@ -257,7 +264,6 @@ export default function VehicleFilters() {
       <div className={styles.equipmentSection}>
         <h3 className={styles.sectionTitle}>Vehicle equipment</h3>
 
-        {/* Исправлено: div → ul для семантического списка */}
         <ul className={styles.equipmentGrid}>
           <li className={styles.checkboxOption}>
             <label>
@@ -325,7 +331,6 @@ export default function VehicleFilters() {
       <div className={styles.vehicleTypeSection}>
         <h3 className={styles.sectionTitle}>Vehicle type</h3>
 
-        {/* Исправлено: div → ul для семантического списка */}
         <ul className={styles.typeGrid}>
           {vehicleTypes.map(option => (
             <li key={option.value} className={styles.radioOption}>
