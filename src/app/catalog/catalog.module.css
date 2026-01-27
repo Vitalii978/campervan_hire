@@ -1,4 +1,4 @@
-.main {
+/* .main {
   margin-top: 72px;
   padding: 48px 0 52px 0;
   background: var(--color-white);
@@ -20,4 +20,89 @@
 
 .listColumn {
   flex: 1;
+} */
+
+
+
+.main {
+  margin-top: 72px;
+  padding: 48px 0 52px 0;
+  background: var(--color-white);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px;
+  overflow-x: hidden; /* ← ДОБАВИТЬ */
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 64px;
+  display: flex;
+  gap: 64px;
+  width: 100%; /* ← ДОБАВИТЬ */
+  box-sizing: border-box; /* ← ДОБАВИТЬ */
+  
+}
+
+.filtersColumn {
+  width: 360px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  max-width: 100%; /* ← ДОБАВИТЬ */
+}
+
+.listColumn {
+  flex: 1;
+ min-width: 0;  /* ← ВАЖНО: позволяет сжиматься */
+  overflow-x: hidden; /* ← ДОБАВИТЬ */
+}
+
+/* ДОБАВЬ АДАПТИВНОСТЬ: */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 32px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+    padding: 0 24px;
+    gap: 24px;
+  }
+  
+  .filtersColumn {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-top: 60px;
+    padding: 32px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+    gap: 16px;
+  }
+  
+  .filtersColumn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    margin-top: 56px;
+    padding: 24px 0;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
 }
