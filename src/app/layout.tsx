@@ -15,24 +15,22 @@ export const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'TravelTrucks',
- description:
-  'TravelTrucks is a modern campervan rental web application where users can browse available campervans, view detailed information, and book the perfect vehicle for their next road trip.',
-
-  openGraph: {
-  title: 'TravelTrucks — campervan rentals',
   description:
-    'TravelTrucks is a modern campervan rental platform that allows users to explore campervans, check availability, and book vehicles easily for unforgettable road trip adventures.',
-  type: 'website',
-  url: 'https://campervan-hire.vercel.app',
-  images: [
-    {
-      url: 'https://campervan-hire.vercel.app/images/Hero/Home_img.jpg',
-      width: 1200,
-      height: 630,
-      alt: 'TravelTrucks campervan rental platform',
-    },
-  ],
+    'TravelTrucks is a modern campervan rental web application where users can browse available campervans, view detailed information, and book the perfect vehicle for their next road trip.',
+  openGraph: {
+    title: 'TravelTrucks — campervan rentals',
+    description:
+      'TravelTrucks is a modern campervan rental platform that allows users to explore campervans, check availability, and book vehicles easily for unforgettable road trip adventures.',
+    type: 'website',
     url: 'https://campervan-hire.vercel.app',
+    images: [
+      {
+        url: 'https://campervan-hire.vercel.app/images/Hero/Home_img.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'TravelTrucks campervan rental platform',
+      },
+    ],
   },
 };
 
