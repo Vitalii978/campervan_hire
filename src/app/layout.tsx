@@ -69,6 +69,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'TravelTrucks — campervan rentals',
     description: 'Campervan rentals - catalog and booking',
+    type: 'website',
+    url: 'https://campervan-hire.vercel.app',
     images: [
       {
         url: 'https://campervan-hire.vercel.app/images/Hero/Home_img.jpg',
@@ -77,7 +79,6 @@ export const metadata: Metadata = {
         alt: 'Welcome to TravelTrucks',
       },
     ],
-    url: 'https://campervan-hire.vercel.app',
   },
 };
 
