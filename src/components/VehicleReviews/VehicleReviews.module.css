@@ -1,5 +1,6 @@
 .reviewsContainer {
-  width: 631px;
+  max-width: 653px;
+  width: 100%;
   height: 588px;
 }
 

@@ -230,14 +230,15 @@
 }
 
   .vehicleImageContainer {
-    width: 275px;
+    width: 100%;
+    max-width: 375px;
     flex-shrink: 0;
   }
 
   .vehicleImage {
   border-radius: 10px;
   width: 100%;
-  max-width: 292px;
+  max-width: 320px;
   height: 320px;
   object-fit: cover;
 }

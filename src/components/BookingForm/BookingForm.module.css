@@ -1,6 +1,6 @@
 .bookingContainer {
   padding: 44px 57px;
-  width: 641px;
+  width: 663px;
   box-sizing: border-box;
   border: 1px solid #dadde1;
   border-radius: 10px;
@@ -37,6 +37,7 @@
 }
 
 .formInput {
+  min-width: 300px;
   padding: 18px 18px;
   border: 1px solid var(--color-input);
   border-radius: 12px;
@@ -111,3 +112,21 @@
   background-color: #cccccc;
   cursor: not-allowed;
 }
+
+
+@media (max-width: 768px) {
+.bookingContainer {
+  max-width: 663px;
+  width: 100%;
+  padding: 44px 24px;
+}
+
+}
+
+@media (max-width: 375px) {
+.bookingContainer {
+  padding: 44px 5px;
+}
+
+}
+

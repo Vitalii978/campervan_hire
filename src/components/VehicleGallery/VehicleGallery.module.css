@@ -1,14 +1,16 @@
 .galleryContainer {
   width: 100%;
+  max-width: 1440px;
 }
 
 .thumbnailsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 48px;
   width: 100%;
   max-width: 1312px;
   margin: 0 auto;
+
 }
 
 .thumbnailItem {
@@ -39,3 +41,4 @@
   overflow: hidden;
   background-color: var(--color-input);
 }
+

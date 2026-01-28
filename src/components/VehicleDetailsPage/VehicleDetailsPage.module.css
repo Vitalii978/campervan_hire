@@ -1,8 +1,8 @@
 .mainContainer {
-  max-width: 1312px;
-  margin: 0 auto;
-  margin-top: 72px;
-  padding: 48px 0 80px 0;
+  max-width: 1440px;
+
+  margin: 72px auto 80px auto;
+  padding: 48px 64px 80px 64px;
 }
 
 .infoSection {
@@ -38,6 +38,8 @@
 .tabsButtons {
   display: flex;
   gap: 40px;
+  
+  /* align-items: center; */
 }
 
 .tabButton {
@@ -77,8 +79,10 @@
 .columnsSection {
   order: 5;
   display: flex;
-  gap: 40px;
-  align-items: start;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
+  /* jastify-content: space-between; */
 }
 
 .loadingState {
@@ -137,4 +141,30 @@
 
 .retryButton:hover {
   background-color: #d84343;
+}
+
+@media (min-width: 1200px) {
+.mainContainer {
+    padding: 0 32px;
+  }
+
+  .columnsSection {
+  flex-direction: row;
+  align-items: center;
+  jastify-content: space-between;
+}
+}
+
+
+@media (max-width: 768px) {
+.mainContainer {
+    padding: 0 24px;
+  }
+
+}
+
+@media (max-width: 375px) {
+.mainContainer {
+    padding: 0 12px;
+  }
 }
