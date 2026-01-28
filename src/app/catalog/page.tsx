@@ -6,7 +6,7 @@ import styles from './catalog.module.css';
 export default function CatalogPage() {
   return (
     <main className={styles.main}>
-      <div className="container"> {/* ← ОБЕРНУТЬ В КОНТЕЙНЕР */}
+      <div className="container"> 
         <div className={styles.container}>
           <div className={styles.filtersColumn}>
             <VehicleFilters />

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import 'modern-normalize/modern-normalize.css'; // ← ПЕРВЫМ!
-import './globals.css'; // ← ПОТОМ твои стили
+import 'modern-normalize/modern-normalize.css'; 
+import './globals.css'; 
 import Header from '@/components/Header/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

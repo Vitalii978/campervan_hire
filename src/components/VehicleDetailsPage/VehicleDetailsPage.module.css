@@ -1,6 +1,5 @@
 .mainContainer {
   max-width: 1440px;
-
   margin: 72px auto 80px auto;
   padding: 48px 64px 80px 64px;
 }
@@ -38,8 +37,7 @@
 .tabsButtons {
   display: flex;
   gap: 40px;
-  
-  /* align-items: center; */
+
 }
 
 .tabButton {
@@ -82,7 +80,7 @@
   flex-direction: column;
   gap: 60px;
   align-items: center;
-  /* jastify-content: space-between; */
+  
 }
 
 .loadingState {

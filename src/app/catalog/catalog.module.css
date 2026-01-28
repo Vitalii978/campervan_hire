@@ -1,29 +1,3 @@
-/* .main {
-  margin-top: 72px;
-  padding: 48px 0 52px 0;
-  background: var(--color-white);
-  min-height: 100vh;
-}
-
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 64px;
-  display: flex;
-  gap: 64px;
-}
-
-.filtersColumn {
-  width: 360px;
-  flex-shrink: 0;
-}
-
-.listColumn {
-  flex: 1;
-} */
-
-
-
 .main {
   margin-top: 72px;
   padding: 120px 0 52px 0;
@@ -31,7 +5,7 @@
   min-height: 100vh;
   width: 100%;
   max-width: 1440px;
-  overflow-x: hidden; /* ← ДОБАВИТЬ */
+  overflow-x: hidden; 
   margin: 0 auto;
 }
 
@@ -41,8 +15,8 @@
   padding: 0 64px;
   display: flex;
   gap: 64px;
-  width: 100%; /* ← ДОБАВИТЬ */
-  box-sizing: border-box; /* ← ДОБАВИТЬ */
+  width: 100%; 
+  box-sizing: border-box; 
   
 }
 
@@ -50,16 +24,16 @@
   width: 360px;
   margin: 0 auto;
   flex-shrink: 0;
-  max-width: 100%; /* ← ДОБАВИТЬ */
+  max-width: 100%; 
 }
 
 .listColumn {
   flex: 1;
- min-width: 0;  /* ← ВАЖНО: позволяет сжиматься */
-  overflow-x: hidden; /* ← ДОБАВИТЬ */
+ min-width: 0;  
+  overflow-x: hidden; 
 }
 
-/* ДОБАВЬ АДАПТИВНОСТЬ: */
+
 @media (max-width: 1200px) {
   .container {
     padding: 0 32px;
