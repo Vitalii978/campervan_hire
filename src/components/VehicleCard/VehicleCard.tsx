@@ -87,7 +87,7 @@ export default function VehicleCard({ vehicleData }: VehicleCardProps) {
 
         <p className={styles.vehicleDescription}>{vehicleData.summary}</p>
 
-        {/* Исправлено: div → ul для семантического списка */}
+     
         <ul className={styles.featuresContainer}>
           <li className={styles.featureItem}>
             <div className={styles.featureBadge}>
