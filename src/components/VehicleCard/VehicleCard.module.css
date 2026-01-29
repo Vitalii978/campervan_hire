@@ -226,11 +226,13 @@
     height: 320px;
   }
 
-  .vehicleHeader {
-    margin-bottom: 40px;
-  }
 
-  .priceSection {
-    gap: 100px;
-  }
+.vehicleTitle {
+  font-size: 22px;
+}
+
+.vehiclePrice {
+  font-size: 22px;
+}
+
 }
