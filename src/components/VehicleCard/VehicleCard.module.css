@@ -215,8 +215,28 @@
 }
 
 
+@media (max-width: 768px) {
+.vehicleHeader {
+  margin-bottom: 30px;
+
+}
+
+.vehicleTitle {
+  font-size: 20px;
+}
+
+.vehiclePrice {
+  font-size: 20px;
+}
+}
+
+
 
 @media (max-width: 375px) {
+  /* .vehicleDetails {
+  gap: 12px;
+} */
+
   .vehicleCard {
     padding: 10px;
   }
@@ -228,11 +248,11 @@
 
 
 .vehicleTitle {
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .vehiclePrice {
-  font-size: 22px;
+  font-size: 16px;
 }
 
 }
